@@ -1,0 +1,72 @@
+<p class="mat-display-4">Button</p>
+<div class="mr-4">
+  <button mat-raised-button>Raised Material Button</button>
+  <button mat-flat-button>Flat Material Button</button>
+  <button mat-stroked-button>Stroked Material Button</button>
+  <button mat-icon-button>Icon</button>
+  <button mat-fab>Fab</button>
+  <button mat-mini-fab>FM</button>
+</div>
+
+<p class="mat-display-4">Button With Colors</p>
+<div class="mr-4">
+  <button color="primary" mat-raised-button>Raised Material Button</button>
+  <button color="primary" mat-flat-button>Flat Material Button</button>
+  <button color="primary" mat-stroked-button>Stroked Material Button</button>
+  <button color="primary" mat-icon-button>Icon</button>
+  <button color="primary" mat-fab>Fab</button>
+  <button color="primary" mat-mini-fab>FM</button>
+</div>
+
+<p class="mat-display-4">Toggle Button</p>
+<div class="mr-4">
+  <mat-button-toggle color="primary" #toggleButton checked disableRipple
+    >Toggle</mat-button-toggle
+  >
+  {{ toggleButton.checked }}
+</div>
+
+<p class="mat-display-4">Toggle Button Group</p>
+<div class="mr-4">
+  <mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
+    <mat-button-toggle value="angular">Angular</mat-button-toggle>
+    <mat-button-toggle value="react">React</mat-button-toggle>
+    <mat-button-toggle value="vue">Vue</mat-button-toggle>
+  </mat-button-toggle-group>
+  <br />
+  {{ toggleGroup.value }}
+</div>
+
+<p class="mat-display-4">Icons</p>
+<button color="primary" mat-fab>
+  <mat-icon>reorder</mat-icon>
+</button>
+
+<p class="mat-display-4">Badges</p>
+<div class="m-4 p-4">
+  <span matBadge="5">Notification</span> <br />
+  <span matBadge="5" matBadgePosition="below before">Notification</span> <br />
+  <span matBadge="5" matBadgePosition="below after">Notification</span> <br />
+  <span matBadge="5" matBadgePosition="above before">Notification</span> <br />
+  <span matBadge="5" matBadgeSize="small" matBadgeColor="primary"
+    >Notification</span
+  >
+  <br />
+  <span
+    [matBadge]="notification"
+    [matBadgeHidden]="notification === 0"
+    matBadgeSize="medium"
+    matBadgeColor="accent"
+    matBadgeOverlap="false"
+    >Notification</span
+  >
+  <br />
+  <span
+    matBadge="5"
+    matBadgeSize="large"
+    matBadgeColor="warn"
+    matBadgeOverlap="false"
+    >Notification</span
+  >
+  <br />
+</div>

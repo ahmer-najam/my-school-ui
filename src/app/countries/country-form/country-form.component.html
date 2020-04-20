@@ -1,0 +1,97 @@
+<mat-toolbar>
+  <h3 class="text-center">Country Form</h3>
+  <span class="fill-remaining-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    (click)="onClose()"
+    tabindex="-1"
+    style="float: right;"
+    color="white"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="col-sm">
+  <div class="container">
+    <form
+      #form="ngForm"
+      name="form"
+      autocomplete="off"
+      *ngIf="service.formData"
+      (submit)="onSubmit(form)"
+      novalidate
+    >
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Record ID</label>
+            <input
+              class="form-control"
+              name="CountryCode"
+              #CountryCode="ngModel"
+              [(ngModel)]="service.formData.CountryCode"
+              readonly
+              pattern=""
+            />
+          </div>
+        </div>
+        <input
+          type="hidden"
+          name="UserId"
+          #UserId="ngModel"
+          [(ngModel)]="service.formData.UserId"
+        />
+        <input
+          type="hidden"
+          name="RecDate"
+          #RecDate="ngModel"
+          [(ngModel)]="service.formData.RecDate"
+        />
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Country Name</label>
+            <input
+              class="form-control"
+              name="CountryName"
+              #CountryName="ngModel"
+              [(ngModel)]="service.formData.CountryName"
+              [class.is-invalid]="CountryName.touched && CountryName.invalid"
+              required
+              maxlength="500"
+              pattern=""
+            />
+            <small
+              class="text-danger"
+              *ngIf="CountryName.touched && CountryName.invalid"
+            >
+              Please enter valid Country Name</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <button
+            id="submit"
+            type="submit"
+            class="btn btn-outline-warning ml-3"
+            [disabled]="form.invalid || !isValid"
+            [hidden]="this.isFormSubmitted == true"
+          >
+            <i class="fa fa-database" aria-hidden="true"></i> Submit
+          </button>
+          <button
+            id="newEntry"
+            type="button"
+            class="btn btn-outline-warning ml-1"
+            (click)="resetForm(form)"
+            [hidden]="this.isFormSubmitted == true"
+          >
+            <i class="fa fa-plus" aria-hidden="true"></i> New Entry
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

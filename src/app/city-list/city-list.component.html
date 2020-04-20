@@ -1,0 +1,120 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header [style.backgroundColor]="'#e5e5e5'">
+      <mat-card-title>City List</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <br />
+
+      <div class="row">
+        <div class="col-sm-2">
+          <button
+            mat-raised-button
+            color="primary"
+            style="width: auto;"
+            (click)="onCreate()"
+          >
+            <mat-icon>add</mat-icon> Add New
+          </button>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field style="width: 100%; padding-left:10px">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="row">
+          <table mat-table [dataSource]="cityService.filteredSource" matSort>
+            <!-- CityCode Column -->
+            <ng-container matColumnDef="CityCode">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.CityCode }}
+              </td>
+            </ng-container>
+
+            <!-- UserId Column -->
+            <ng-container matColumnDef="UserId">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+              <td mat-cell *matCellDef="let element">{{ element.UserId }}</td>
+            </ng-container>
+
+            <!-- RecDate Column -->
+            <ng-container matColumnDef="RecDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Rec-Date
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.RecDate }}</td>
+            </ng-container>
+
+            <!-- CityName Column -->
+            <ng-container matColumnDef="CityName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                CityName
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.CityName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="onEdit(element)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="onDelete(element)"
+                >
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container
+              matColumnDef="loading"
+              *ngIf="this.cityService.filteredSource == null"
+            >
+              <mat-footer-cell *matFooterCellDef colSpan="5">
+                Loading Data..
+              </mat-footer-cell>
+            </ng-container>
+            <ng-container
+              matColumnDef="noData"
+              *ngIf="this.cityService.filteredSource == null"
+            >
+              <mat-footer-cell *matFooterCellDef colSpan="5">
+                <b>
+                  No Data..
+                </b>
+              </mat-footer-cell>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <!-- <tr
+              mat-footer-row
+              *matFooterRowDef="['loading']"
+              [ngClass]="{ hide: cityService.filteredSource == null }"
+            ></tr>
+            <mat-footer-row
+              *matFooterRowDef="['noData']"
+              [ngClass]="{
+                hide: true
+              }"
+            ></mat-footer-row> -->
+          </table>
+
+          <ng-template #noResults>
+            <p>No results found for "{{ searchValue }}".</p>
+          </ng-template>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,47 @@
+.navbar {
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+span {
+  padding-right: 1rem;
+}
+
+mat-toolbar {
+  height: fit-content;
+  margin-bottom: 0px !important;
+}
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: auto;
+  padding: 5px;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav,
+mat-sidenav-content {
+  padding: 8px;
+}
+
+mat-sidenav {
+  /* background-color: lightcoral; */
+  background-color: #8293e5;
+  width: 200px;
+}
+
+.mat-list-base:hover .mat-list-item:hover .mat-list-item-content:hover {
+  color: white;
+}
+
+.mat-list-item-content:hover {
+  cursor: pointer;
+  outline: 0;
+  color: aliceblue;
+  font-weight: bold;
+  background-color: #8293e5;
+}

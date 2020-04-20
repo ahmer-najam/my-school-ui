@@ -1,0 +1,13 @@
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-mat-main",
+  templateUrl: "./mat-main.component.html",
+  styleUrls: ["./mat-main.component.css"]
+})
+export class MatMainComponent implements OnInit {
+  notification = 2;
+  constructor() {}
+
+  ngOnInit() {}
+}
