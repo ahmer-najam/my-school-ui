@@ -1,0 +1,103 @@
+<mat-toolbar>
+  <h3 class="text-center">City List</h3>
+  <span class="fill-remaining-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    (click)="onClose()"
+    tabindex="-1"
+    style="float: right;"
+    color="white"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="col-sm">
+  <div class="container">
+    <form
+      #form="ngForm"
+      name="form"
+      autocomplete="off"
+      *ngIf="service.formData"
+      (submit)="onSubmit(form)"
+      novalidate
+    >
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Record ID</label>
+            <input
+              class="form-control"
+              name="CityCode"
+              #CityCode="ngModel"
+              [(ngModel)]="service.formData.CityCode"
+              readonly
+              pattern=""
+            />
+          </div>
+        </div>
+        <input
+          type="hidden"
+          name="UserId"
+          #UserId="ngModel"
+          [(ngModel)]="service.formData.UserId"
+        />
+        <input
+          type="hidden"
+          name="RecDate"
+          #RecDate="ngModel"
+          [(ngModel)]="service.formData.RecDate"
+        />
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>City Name</label>
+            <input
+              class="form-control"
+              name="CityName"
+              #CityName="ngModel"
+              [(ngModel)]="service.formData.CityName"
+              [class.is-invalid]="
+                CityName.touched && (CityName.invalid || isDuplicate)
+              "
+              required
+              maxlength="500"
+              (change)="isDuplicated(service.formData.CityName)"
+              pattern=""
+            />
+            <small
+              class="text-danger"
+              *ngIf="CityName.touched && CityName.invalid"
+            >
+              Please enter valid City Name</small
+            >
+            <small class="text-danger" *ngIf="isDuplicate == true">
+              Duplicate City Name</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <button
+            id="submit"
+            type="submit"
+            class="btn btn-outline-warning ml-3"
+            [disabled]="form.invalid || !isValid || isDuplicate"
+            [hidden]="this.isFormSubmitted == true"
+          >
+            <i class="fa fa-database" aria-hidden="true"></i> Submit
+          </button>
+          <button
+            id="newEntry"
+            type="button"
+            class="btn btn-outline-warning ml-1"
+            (click)="resetForm(form)"
+            [hidden]="this.isFormSubmitted == true"
+          >
+            <i class="fa fa-plus" aria-hidden="true"></i> New Entry
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
